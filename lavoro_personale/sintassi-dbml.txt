@@ -1,0 +1,81 @@
+Table Dipartimenti {
+  dip_id int [pk, increment] // chiave primaria autoincrementale
+  nome_dipartimento varchar [not null]
+  codice varchar [unique, not null] // codice univoco e non nullo
+  descrizione text
+  direttore varchar
+  contatto varchar [not null]
+  sito_web varchar [not null]
+  data_fondazione date
+}
+
+Table Corsi_di_Laurea {
+  corso_laurea_id int [pk]
+  codice_prova varchar [not null]
+  durata_corso int
+  descr_corso varchar
+  // tipologia_corso deve essere 'laurea triennale' o 'laurea magistrale'
+  tipologia_corso varchar [not null]
+  // modalità_accesso deve essere 'libero' o 'prova di ammissione'
+  modalita_accesso varchar [not null]
+  dip_id int [ref: > Dipartimenti.dip_id] // foreign key to Dipartimenti table
+  Note: 'I vincoli per tipologia_corso e modalità_accesso devono essere implementati nel database'
+}
+
+Table corso_di_studio {
+  corso_di_studio_id int [pk]
+  insegnamento varchar [not null]
+  anno varchar [not null]
+  semestre varchar [not null]
+  //deve essere primo o secondo semestre
+  cfu int [not null]
+  ssd varchar [not null]
+  lingua varchar [not null]
+  corso_laurea_id int [ref: > Corsi_di_Laurea.corso_laurea_id] // fk to Corsi di laurea table
+
+}
+
+Table Insegnanti {
+  insegnanti_id int [pk]
+  nome varchar [not null]
+  cognome varchar [not null]
+  email varchar [unique, not null]
+  ssd varchar 
+  sito_docente varchar
+  dip_id int [ref: > Dipartimenti.dip_id] // foreign key to Dipartimenti table
+}
+
+Table Corso_Singolo_Insegnanti {
+  insegnanti_id int [ref: > Insegnanti.insegnanti_id] // foreign key to Insegnanti table
+  corso_di_studio_id int [ref: > corso_di_studio.corso_di_studio_id] // foreign key to Corso_Singolo table
+}
+
+Table Studenti {
+  studenti_matricola int [pk, unique]
+  studente_nome varchar [not null]
+  studente_cognome varchar [not null]
+  studente_email varchar [unique, not null]
+  immatricolazione date
+  libretto_voti text
+  corso_laurea_id int [ref: > Corsi_di_Laurea.corso_laurea_id] // foreign key to Corsi_di_Laurea table
+}
+
+Table Appello_d_Esame {
+  appello_id int [pk]
+  data_esame date
+  ora_inizio_esame time
+  ora_fine_esame time
+  aula_esame varchar
+  corso_di_studio_id int [ref: > corso_di_studio.corso_di_studio_id] // foreign key to corso_di_studio table
+}
+
+Table Esami_Studenti {
+  studenti_matricola int [ref: > Studenti.studenti_matricola] // foreign key to Studenti table
+  appello_id int [ref: > Appello_d_Esame.appello_id] // foreign key to Appello_d_Esame table
+  voto int
+}
+
+
+
+
+
