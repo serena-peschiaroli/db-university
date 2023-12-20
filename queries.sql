@@ -62,7 +62,7 @@ WHERE
 
 --Contare i corsi con + di 10 cfu appartenenti al primo semestre del primo anno:
 SELECT
-    COUNT(*)
+    COUNT(*) AS total_cfu_first_year
 FROM
     `courses`
 WHERE
@@ -73,7 +73,7 @@ WHERE
 --contare tutti i corsi con più di 10 cfu
 
 SELECT
-    COUNT(*)
+    COUNT(*) AS total_cfu
 FROM
     `courses`
 WHERE
@@ -118,7 +118,7 @@ ORDER BY
     cfu ASC;
 -- Contare tutti i corsi del primo anno, primo semestre
 SELECT
-    COUNT(*)
+    COUNT(*) AS firstyear_count
 FROM
     `courses`
 WHERE
@@ -137,7 +137,7 @@ WHERE
 
 --conto 
 SELECT
-    COUNT(*)
+    COUNT(*) AS total_noon_exams
 FROM
     `exams`
 WHERE
@@ -157,7 +157,7 @@ ORDER BY
     `name` ASC;
 --contare il totale
 SELECT
-    COUNT(*)
+    COUNT(*) AS total_masters_degree
 FROM
     `degrees`
 WHERE
@@ -165,7 +165,7 @@ WHERE
 
 --7 Da quanti dipartimenti è composta l 'università? (12)
 SELECT
-    COUNT(*)
+    COUNT(*) AS total_dept_num
 FROM
     `departments`;
 --estrapolare dati ordinati in maniera ascendente x id
@@ -180,12 +180,12 @@ ORDER BY
 
 --conto del totale 
 SELECT
-    COUNT(*)
+    COUNT(*) AS total_phone_null
 FROM
     `teachers`
 WHERE
     `phone` IS NULL
-    
+
 --estrapolazione dati semplice ordinata alfabeticamente x cognome
 SELECT 
     *
