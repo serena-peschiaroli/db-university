@@ -103,4 +103,26 @@ ORDER BY
 
 --ambedue le soluzioni, impostante per il conteggio, danno come risultato 3646 e se ordinate in maniera discendente, il primo risultato ha come data di nascita 27/12/1993
 
--- Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
+-- 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
+
+--estrapolare tutti i dati dei corsi appartenenti al primo anno, primo semestre, ordinandoli in maniera ascendente per CFU
+
+SELECT
+    *
+FROM
+    `courses`
+WHERE
+    `year` = '1'
+    AND period = 'I semestre'
+ORDER BY
+    cfu ASC;
+-- Contare tutti i corsi del primo anno, primo semestre
+SELECT
+    COUNT(*)
+FROM
+    `courses`
+WHERE
+    `year` = '1'
+    AND period = 'I semestre';
+
+--5. 5.Selezionare tutti gli appelli d 'esame che avvengono nel pomeriggio (dopo le 14) del 20/06/2020 (21)
