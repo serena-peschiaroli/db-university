@@ -176,4 +176,36 @@ FROM
 ORDER BY
     `id` ASC;
 
--- 8 
+-- 8 Quanti sono gli insegnanti che non hanno un numero di telefono ? (50)
+
+--conto del totale 
+SELECT
+    COUNT(*)
+FROM
+    `teachers`
+WHERE
+    `phone` IS NULL
+    
+--estrapolazione dati semplice ordinata alfabeticamente x cognome
+SELECT 
+    *
+FROM
+    `teachers`
+WHERE
+    `phone` IS NULL
+ORDER BY
+    `surname` ASC;
+
+--estrapolazione dati mostrando solo id, nome, cognome, telefono, mail, ordinata x id
+SELECT
+    `id`,
+    `name`,
+    `surname`,
+    `phone`,
+    `email`
+FROM
+    `teachers`
+WHERE
+    `phone` IS NULL
+ORDER BY
+    `id` ASC;
