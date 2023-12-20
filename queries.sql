@@ -164,3 +164,16 @@ WHERE
     `level` = 'magistrale';
 
 --7 Da quanti dipartimenti è composta l 'università? (12)
+SELECT
+    COUNT(*)
+FROM
+    `departments`;
+--estrapolare dati ordinati in maniera ascendente x id
+SELECT
+    *
+FROM
+    `departments`
+ORDER BY
+    `id` ASC;
+
+-- 8 
