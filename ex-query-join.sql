@@ -124,3 +124,23 @@ WHERE
     departments.name = 'Dipartimento di Matematica';
 
 --7.Selezionare per ogni studente quanti tentativi d ’ esame ha sostenuto per superare ciascuno dei suoi esami
+SELECT
+    students.surname AS student_surname,
+    students.registration_number AS matricola,
+    courses.name AS course_name,
+    COUNT(*) AS failed_attempts
+FROM
+    students
+    JOIN exam_student ON students.id = exam_student.student_id
+    JOIN exams ON exam_student.exam_id = exams.id
+    JOIN courses ON exams.course_id = courses.id
+WHERE
+    exam_student.vote < 18
+GROUP BY
+    students.surname,
+    students.registration_number,
+    courses.name
+ORDER BY
+    students.surname,
+    students.registration_number,
+    courses.name;
