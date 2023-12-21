@@ -92,6 +92,7 @@ ORDER BY
     date_of_birth ASC;
 
 --soluzione 2 utilizzando DATE_ADD con parametro INTERVAL + 30 anni  < =  DATE ADD con data odierna + 11 giorni per coloro che compiranno 30anni entro il 31/12
+--soluzione errata perché l'intervallo di 11 giorni diventa obsoleto col passare dei giorni
 SELECT
     *
 FROM
@@ -102,6 +103,16 @@ ORDER BY
     date_of_birth ASC;
 
 --ambedue le soluzioni, impostante per il conteggio, danno come risultato 3646 e se ordinate in maniera discendente, il primo risultato ha come data di nascita 27/12/1993
+
+--si può usare
+SELECT
+    *
+FROM
+    students
+WHERE
+    date_of_birth <= DATE_SUB(DATE_FORMAT(NOW(), '%Y-12-31'), INTERVAL 30 YEAR)
+ORDER BY
+    date_of_birth ASC;
 
 -- 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286)
 
